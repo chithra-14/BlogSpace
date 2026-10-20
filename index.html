@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlogSpace | Share your thoughts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">B</span> BlogSpace</a>
+    <nav><a href="#feed">Explore</a><a href="#write">Write a post</a></nav>
+    <div class="account" id="accountArea">
+      <button class="btn btn-outline" onclick="showAuth('login')">Log in</button>
+      <button class="btn btn-primary" onclick="showAuth('register')">Get started</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> A little space for big ideas</span>
+        <h1>Ideas are better<br>when <em>shared.</em></h1>
+        <p>Read stories, share what you know, and join conversations that matter.</p>
+        <a class="btn btn-primary hero-btn" href="#feed">Explore stories <span>↘</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun"></div><div class="art-card card-back"></div>
+        <div class="art-card card-front"><span class="art-label">YOUR NEXT CHAPTER</span><div class="art-lines"></div><div class="art-lines short"></div><div class="art-circle">✳</div></div>
+        <span class="spark spark-one">✳</span><span class="spark spark-two">✦</span>
+      </div>
+    </section>
+
+    <section class="content-layout" id="feed">
+      <div class="feed-column">
+        <div class="section-heading"><div><span class="eyebrow">THE COMMUNITY</span><h2>Latest stories</h2></div><span class="post-total" id="postTotal">Loading stories…</span></div>
+        <div id="posts" class="posts"><div class="empty-state">Loading posts…</div></div>
+      </div>
+      <aside class="sidebar">
+        <div class="side-card write-card" id="write">
+          <span class="side-icon">✎</span><h3>Have a story to tell?</h3><p>Your experience might be exactly what someone needs to read today.</p>
+          <button class="btn btn-primary full" onclick="startWriting()">Create a post <span>↗</span></button>
+        </div>
+        <div class="side-card"><span class="eyebrow">HOW IT WORKS</span><div class="mini-step"><span>01</span><div><b>Write freely</b><p>Share your ideas and experiences.</p></div></div><div class="mini-step"><span>02</span><div><b>Connect</b><p>Read and comment on community posts.</p></div></div><div class="mini-step"><span>03</span><div><b>Grow together</b><p>Learn something new every day.</p></div></div></div>
+      </aside>
+    </section>
+    <footer><a class="brand" href="#"><span class="brand-mark">B</span> BlogSpace</a><span>Made for ideas worth sharing.</span></footer>
+  </main>
+
+  <div class="modal hidden" id="authModal">
+    <div class="modal-panel">
+      <button class="close" onclick="closeAuth()" aria-label="Close">×</button>
+      <span class="eyebrow">WELCOME TO BLOGSPACE</span><h2 id="authTitle">Welcome back</h2><p id="authSubtitle">Log in to join the conversation.</p>
+      <form id="authForm">
+        <div id="nameField" class="field hidden"><label for="authName">Your name</label><input id="authName" placeholder="e.g. Alex Morgan" autocomplete="name"></div>
+        <div class="field"><label for="authEmail">Email address</label><input id="authEmail" type="email" placeholder="you@example.com" required autocomplete="email"></div>
+        <div class="field"><label for="authPassword">Password</label><input id="authPassword" type="password" placeholder="At least 6 characters" required minlength="6" autocomplete="current-password"></div>
+        <button class="btn btn-primary full" id="authSubmit" type="submit">Log in</button>
+      </form>
+      <p class="switch-auth" id="authSwitch">New here? <button onclick="showAuth('register')">Create an account</button></p>
+      <p class="form-message" id="authMessage"></p>
+    </div>
+  </div>
+
+  <div class="modal hidden" id="postModal">
+    <div class="modal-panel post-panel">
+      <button class="close" onclick="closePostForm()" aria-label="Close">×</button>
+      <span class="eyebrow">YOUR WORDS, YOUR SPACE</span><h2 id="postFormTitle">Create a story</h2><p>Give your idea a title and let it unfold.</p>
+      <form id="postForm">
+        <div class="field"><label for="postTitle">Post title</label><input id="postTitle" maxlength="150" placeholder="A title people will remember" required></div>
+        <div class="field"><label for="postContent">Your story</label><textarea id="postContent" rows="8" placeholder="Start writing here…" required></textarea></div>
+        <button class="btn btn-primary full" id="savePostButton" type="submit">Publish story</button>
+        <p class="form-message" id="postMessage"></p>
+      </form>
+    </div>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
